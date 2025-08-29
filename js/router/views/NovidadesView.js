@@ -1,7 +1,9 @@
-// /js/router/views/NovidadesView.js
 import {
     loadGames
-} from 'data/loader.js';
+} from '../data/loader.j';
+import { 
+    Footer 
+} from './Footer.js';
 
 export const NovidadesView = {
     async render() {
@@ -28,7 +30,7 @@ export const NovidadesView = {
         const grid = document.querySelector('[data-grid]');
         const cards = (g) => `
       <article class="card" tabindex="0" aria-labelledby="${g.slug}-title">
-        <a href="/jogo/${g.slug}" data-link>
+        <a href="jogo/${g.slug}" data-link>
           <img src="${g.img}" alt="Capa do jogo ${g.nome}" loading="lazy" />
         </a>
         <div class="body">

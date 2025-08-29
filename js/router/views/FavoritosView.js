@@ -1,6 +1,6 @@
 import {
     loadGames
-} from 'data/loader.js';
+} from '../data/loader.js';
 import {
     favorites
 } from 'favorites.js';
@@ -24,7 +24,7 @@ export const FavoritosView = {
         const grid = document.querySelector('[data-grid]');
         grid.innerHTML = list.length ? list.map(g => `
       <article class="card">
-        <a href="/jogo/${g.slug}" data-link>
+        <a href="jogo/${g.slug}" data-link>
           <img src="${g.img}" alt="Capa do jogo ${g.nome}" loading="lazy" />
         </a>
         <div class="body">

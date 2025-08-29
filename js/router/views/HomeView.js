@@ -1,10 +1,14 @@
-// /js/router/views/HomeView.js
 import {
     loadGames
-} from 'data/loader.js';
+} from '../data/loader.js';
 import {
     favorites
-} from 'favorites.js';
+} from '../favorites.js';
+
+import { 
+    Footer 
+} from './Footer.js';
+
 
 // === helpers do seu app.js ===
 const $ = (s, r = document) => r.querySelector(s);
@@ -108,7 +112,7 @@ function card(g) {
     const pressed = String(isFav);
     return `
   <article class="card" tabindex="0" aria-labelledby="${g.slug}-title">
-    <a href="/jogo/${g.slug}" data-link aria-label="Ver detalhes de ${g.nome}">
+    <a href="jogo/${g.slug}" data-link aria-label="Ver detalhes de ${g.nome}">
       <img src="${g.img}" alt="Capa do jogo ${g.nome}" loading="lazy" />
     </a>
     <button class="fav-ico" data-slug="${g.slug}" aria-pressed="${pressed}"
