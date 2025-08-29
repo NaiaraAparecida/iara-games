@@ -6,21 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Detalhes do jogo — Iara Games." />
   <title>Iara Games — Detalhes</title>
+  <base href="/iara-games/">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="css/main.css" />
 </head>
 
 <body>
   <header class="nav">
     <div class="container inner">
-      <a class="brand" href="./" aria-label="Página inicial Iara Games">
+      <a class="brand" href="." aria-label="Página inicial Iara Games">
         <img src="assets/images/LogoSemFundo.png" alt="Logo Iara Games" />
         <span>Iara Games</span>
       </a>
       <nav aria-label="Principal">
-        <a class="link" href="index.html">Catálogo</a>
+        <a class="link" href=".">Catálogo</a>
         <a class="link" href="novidades.html">Novidades</a>
       </nav>
     </div>
@@ -32,11 +33,14 @@
     </div>
   </main>
 
-  <footer>
-    <div class="container">
-      <p>© 2025 Iara Games.</p>
-    </div>
-  </footer>
+    <footer>
+        <div class="container bottom-footer">
+            <p>
+                Copyright &copy; 2025
+                <a href="https://naiaracruz.dev" class="footer-link">Naiara Cruz</a> — Todos os direitos reservados
+            </p>
+        </div>
+    </footer>
 
 <script type="module">
   import { loadGames } from 'js/data/loader.js';
