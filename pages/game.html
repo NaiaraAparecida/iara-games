@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Detalhes do jogo — Iara Games." />
+  <title>Iara Games — Detalhes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+
+<body>
+  <header class="nav">
+    <div class="container inner">
+      <a class="brand" href="./" aria-label="Página inicial Iara Games">
+        <img src="../assets/images/LogoSemFundo.png" alt="Logo Iara Games" />
+        <span>Iara Games</span>
+      </a>
+      <nav aria-label="Principal">
+        <a class="link" href="../index.html">Catálogo</a>
+        <a class="link" href="./novidades.html">Novidades</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding:24px 0">
+    <div id="root">
+      <p>Carregando...</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Iara Games.</p>
+    </div>
+  </footer>
+
+<script type="module">
+  import { loadGames } from './js/data/loader.js';
+  import { favorites } from './js/favorites.js';
+
+  const params = new URLSearchParams(location.search);
+  const slug = params.get('slug');
+  const root = document.getElementById('root');
+  const currency = v => v.toLocaleString('pt-BR', { style:'currency', currency:'BRL' });
+
+  const data = await loadGames();
+  const jogo = data.find(g => g.slug === slug);
+
+  if (!jogo) {
+    root.innerHTML = '<p>Jogo não encontrado.</p>';
+  } else {
+    const isFav = favorites.has(jogo.slug);
+    const pressed = String(isFav);
+
+    root.innerHTML = `
+      <article class="card" style="overflow:hidden">
+        <img src="${jogo.img}" alt="Capa do jogo ${jogo.nome}" loading="lazy" />
+        <button class="fav-ico" id="fav" data-slug="${jogo.slug}" aria-pressed="${pressed}"
+                aria-label="${isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
+          ${pixelHeart(isFav)}
+        </button>
+        <div class="body">
+          <h1 style="margin:0 0 8px">${jogo.nome}</h1>
+          <div class="meta" style="margin-bottom:12px">
+            <span class="badge">${jogo.studio}</span>
+            ${jogo.genero.map(x => `<span class="badge">${x}</span>`).join('')}
+            <span class="badge">${jogo.ano}</span>
+          </div>
+          <p style="margin-bottom:10px">Preço: <strong>${currency(jogo.preco)}</strong></p>
+          <div class="actions">
+            <a class="btn" href="${jogo.link}" target="_blank" rel="noopener">Comprar/Conhecer</a>
+          </div>
+        </div>
+      </article>
+    `;
+
+
+    const favBtn = document.getElementById('fav');
+    favBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      favorites.toggle(jogo.slug);
+      const active = favorites.has(jogo.slug);
+      favBtn.setAttribute('aria-pressed', String(active));
+      favBtn.setAttribute('aria-label', active ? 'Remover dos favoritos' : 'Adicionar aos favoritos');
+
+      favBtn.innerHTML = pixelHeart(active);
+    });
+  }
+</script>
+
+
+</body>
+
+</html>
