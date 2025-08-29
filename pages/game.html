@@ -16,12 +16,12 @@
   <header class="nav">
     <div class="container inner">
       <a class="brand" href="./" aria-label="Página inicial Iara Games">
-        <img src="../assets/images/LogoSemFundo.png" alt="Logo Iara Games" />
+        <img src="assets/images/LogoSemFundo.png" alt="Logo Iara Games" />
         <span>Iara Games</span>
       </a>
       <nav aria-label="Principal">
-        <a class="link" href="../index.html">Catálogo</a>
-        <a class="link" href="./novidades.html">Novidades</a>
+        <a class="link" href="index.html">Catálogo</a>
+        <a class="link" href="novidades.html">Novidades</a>
       </nav>
     </div>
   </header>
@@ -39,8 +39,8 @@
   </footer>
 
 <script type="module">
-  import { loadGames } from './js/data/loader.js';
-  import { favorites } from './js/favorites.js';
+  import { loadGames } from 'js/data/loader.js';
+  import { favorites } from 'js/favorites.js';
 
   const params = new URLSearchParams(location.search);
   const slug = params.get('slug');

@@ -1,7 +1,7 @@
 // /js/router/views/NovidadesView.js
 import {
     loadGames
-} from '../../data/loader.js';
+} from 'data/loader.js';
 
 export const NovidadesView = {
     async render() {

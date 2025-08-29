@@ -1,10 +1,10 @@
 // /js/router/views/HomeView.js
 import {
     loadGames
-} from '../../data/loader.js';
+} from 'data/loader.js';
 import {
     favorites
-} from '../../favorites.js';
+} from 'favorites.js';
 
 // === helpers do seu app.js ===
 const $ = (s, r = document) => r.querySelector(s);
@@ -13,7 +13,6 @@ const currency = v => v.toLocaleString('pt-BR', {
     currency: 'BRL'
 });
 
-// coração pixel (mesmo do seu app.js)
 function pixelHeart(on = true) {
     return on ? `
     <svg class="heart-pixel" viewBox="0 0 9 8" aria-hidden="true">

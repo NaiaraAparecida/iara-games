@@ -5,7 +5,7 @@ export const gamesBR = [{
         genero: ["Aventura", "Plataforma"],
         studio: "Dumativa",
         ano: 2016,
-        img: "/assets/images/Lenda-do-heroi.png",
+        img: "assets/images/Lenda-do-heroi.png",
         link: "https://alendadoheroi.com.br",
         featured: true
     },
@@ -16,7 +16,7 @@ export const gamesBR = [{
         genero: ["Terror", "Investigação"],
         studio: "Pulsatrix",
         ano: 2022,
-        img: "/assets/images/Fobia.avif",
+        img: "assets/images/Fobia.avif",
         link: "https://www.fobiaojogo.com",
         featured: true
     },
@@ -27,7 +27,7 @@ export const gamesBR = [{
         genero: ["Aventura", "Exploração"],
         studio: "Coffee Addict Studio",
         ano: 2022,
-        img: "/assets/images/Hazel.jpg",
+        img: "assets/images/Hazel.jpg",
         link: "https://store.steampowered.com/app/963040/Hazel_Sky/",
         featured: false
     },
@@ -38,7 +38,7 @@ export const gamesBR = [{
         genero: ["Corrida", "Arcade"],
         studio: "AQUIRIS",
         ano: 2018,
-        img: "/assets/images/Horizon.jpg",
+        img: "assets/images/Horizon.jpg",
         link: "https://www.horizonchaseturbo.com/pt-br",
         featured: false
     },
@@ -49,7 +49,7 @@ export const gamesBR = [{
         genero: ["Ação", "Run-and-Gun"],
         studio: "JoyMasher",
         ano: 2019,
-        img: "/assets/images/Blazing.jpg",
+        img: "assets/images/Blazing.jpg",
         link: "https://joymasher.com/blazing-chrome/",
         featured: false
     },
@@ -60,7 +60,7 @@ export const gamesBR = [{
         genero: ["RPG de Ação", "Sci-Fi"],
         studio: "Massive Work Studio",
         ano: 2022,
-        img: "/assets/images/Dolmen.jpg",
+        img: "assets/images/Dolmen.jpg",
         link: "https://store.steampowered.com/app/831050/DOLMEN/",
         featured: false
     },
@@ -71,7 +71,7 @@ export const gamesBR = [{
         genero: ["Beat'em up", "Retrô"],
         studio: "QUByte Interactive",
         ano: 2016,
-        img: "/assets/images/99Vidas.avif",
+        img: "assets/images/99Vidas.avif",
         link: "https://store.steampowered.com/app/557040/99Vidas/",
         featured: false
     },
@@ -82,7 +82,7 @@ export const gamesBR = [{
         genero: ["Roguelike", "Ação"],
         studio: "Mad Mimic",
         ano: 2021,
-        img: "/assets/images/Dandy.jpg",
+        img: "assets/images/Dandy.jpg",
         link: "https://www.madmimic.com/dac",
         featured: false
     },
@@ -93,7 +93,7 @@ export const gamesBR = [{
         genero: ["Ação", "Aventura"],
         studio: "Studio Pixel Punk",
         ano: 2021,
-        img: "/assets/images/Unsighted.avif",
+        img: "assets/images/Unsighted.avif",
         link: "https://store.steampowered.com/app/1062110/UNSIGHTED/",
         featured: false
     },
@@ -104,7 +104,7 @@ export const gamesBR = [{
         genero: ["Ação", "Metroidvania"],
         studio: "Long Hat House",
         ano: 2018,
-        img: "/assets/images/Dandara.png",
+        img: "assets/images/Dandara.png",
         link: "https://store.steampowered.com/app/612390/Dandara/",
         featured: false
     },
@@ -115,7 +115,7 @@ export const gamesBR = [{
         genero: ["Tática", "RPG"],
         studio: "Behold Studios",
         ano: 2015,
-        img: "/assets/images/Blazing.jpg",
+        img: "assets/images/Blazing.jpg",
         link: "https://store.steampowered.com/app/251130/Chroma_Squad/",
         featured: false
     }

@@ -1,10 +1,10 @@
 // /js/router/views/GameView.js
 import {
     loadGames
-} from '../../data/loader.js';
+} from 'data/loader.js';
 import {
     favorites
-} from '../../favorites.js';
+} from 'favorites.js';
 
 function pixelHeart(on = true) {
     return on ? `

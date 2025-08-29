@@ -1,15 +1,15 @@
 import {
     HomeView
-} from './views/HomeView.js';
+} from 'views/HomeView.js';
 import {
     NovidadesView
-} from './views/NovidadesView.js';
+} from 'views/NovidadesView.js';
 import {
     GameView
-} from './views/GameView.js';
+} from 'views/GameView.js';
 import {
     FavoritosView
-} from './views/FavoritosView.js';
+} from 'views/FavoritosView.js';
 
 // util: navegação SPA
 function navigateTo(url) {

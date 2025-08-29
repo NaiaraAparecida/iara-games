@@ -6,23 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Iara Games — plataforma que reúne e destaca jogos brasileiros." />
     <title>Iara Games — Jogos brasileiros</title>
+    <base href="/iara-games/">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    
 </head>
 
 <body>
     <header class="nav">
         <div class="container inner">
             <a class="brand" href="./" aria-label="Página inicial Iara Games">
-                <img src="./assets/images/LogoSemFundo.png" alt="Logo Iara Games" />
+                <img src="assets/images/LogoSemFundo.png" alt="Logo Iara Games" />
                 <span>Iara Games</span>
             </a>
             <nav aria-label="Principal">
-                <a class="link" href="/" data-link>Catálogo</a>
-                <a class="link" href="/novidades" data-link>Novidades</a>
-                <a class="link" href="/favoritos" data-link>Favoritos</a>
+                <a class="link" href="." data-link>Catálogo</a>
+                <a class="link" href="novidades" data-link>Novidades</a>
+                <a class="link" href="favoritos" data-link>Favoritos</a>
             </nav>
         </div>
     </header>
@@ -65,7 +67,7 @@
         </div>
     </footer>
 
-    <script type="module" src="/js/router/router.js"></script>
+    <script type="module" src="js/router/router.js"></script>
 </body>
 
 </html>

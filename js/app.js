@@ -1,15 +1,14 @@
 import {
     loadGames
-} from './data/loader.js';
+} from 'data/loader.js';
 import {
     favorites
-} from './favorites.js';
+} from 'favorites.js';
 
 
-// coração pixel (ON/OFF) — feito com "pixels" (rect)
 function pixelHeart(on = true) {
     if (on) {
-        // Cheio (vermelho) + brilho branco
+
         return `
       <svg class="heart-pixel" viewBox="0 0 9 8" aria-hidden="true">
         <!-- vermelho -->
@@ -66,7 +65,6 @@ function pixelHeart(on = true) {
       </svg>
     `;
     } else {
-        // Desligado (contorno)
         return `
       <svg class="heart-pixel" viewBox="0 0 9 8" aria-hidden="true">
         <!-- contorno em "pixel" -->
