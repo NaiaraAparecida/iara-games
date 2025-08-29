@@ -5,7 +5,7 @@ export async function loadGames(){
         return await res.json();
     }catch(e){
         // fallback para o dataset estático
-        const { gamesBR } = await import('games.js')
+        const { gamesBR } = await import('./games.js')
         return gamesBR;
     }
 }
