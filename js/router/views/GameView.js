@@ -1,10 +1,9 @@
-// /js/router/views/GameView.js
 import {
     loadGames
 } from '../data/loader.js';
 import {
     favorites
-} from '../favorites.js';
+} from '../../favorites.js';
 import { 
     Footer 
 } from './Footer.js';

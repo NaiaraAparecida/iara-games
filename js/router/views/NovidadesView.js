@@ -1,9 +1,10 @@
 import {
     loadGames
-} from '../data/loader.j';
+} from '../../data/loader.js';
 import { 
     Footer 
 } from './Footer.js';
+import { favorites } from '../../favorites.js'
 
 export const NovidadesView = {
     async render() {

@@ -3,7 +3,11 @@ import {
 } from '../data/loader.js';
 import {
     favorites
-} from 'favorites.js';
+} from '../../favorites.js';
+
+import { 
+  Footer 
+} from './Footer.js';
 
 export const FavoritosView = {
     async render() {
