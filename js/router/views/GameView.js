@@ -71,7 +71,7 @@ export const GameView = {
           <p style="margin-bottom:10px">Preço: <strong>${jogo.preco.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</strong></p>
           <div class="actions">
             <a class="btn" href="${jogo.link}" target="_blank" rel="noopener">Comprar/Conhecer</a>
-            <a class="btn secondary" href="/" data-link>Voltar</a>
+            <a class="btn secondary" href="." data-link>Voltar</a>
           </div>
         </div>
       </article>

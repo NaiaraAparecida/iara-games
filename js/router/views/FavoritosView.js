@@ -40,7 +40,7 @@ export const FavoritosView = {
           </div>
           <div class="actions">
             <a class="btn" href="${g.link}" target="_blank" rel="noopener">Comprar</a>
-            <a class="btn secondary" href="/jogo/${g.slug}" data-link>Ver detalhes</a>
+            <a class="btn secondary" href="jogo/${g.slug}" data-link>Ver detalhes</a>
           </div>
         </div>
       </article>
