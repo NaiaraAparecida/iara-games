@@ -115,6 +115,7 @@ export const HomeView = {
   },
   async mount(){
     DATA = await loadGames();
+    console.log('[HomeView] Jogos carregados:', DATA.length, DATA);
     const $ = (s,r=document)=>r.querySelector(s);
 
     $('#genre').innerHTML = uniqueGenres(DATA).map(g => `<option value="${g}">${g}</option>`).join('');

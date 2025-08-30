@@ -1,14 +1,9 @@
-import {
-    loadGames
-} from '../../data/loader.js';
-import { 
-    Footer 
-} from './Footer.js';
-import { favorites } from '../../favorites.js'
+import { loadGames } from '../../data/loader.js';
+import { Footer } from './Footer.js';
 
 export const NovidadesView = {
-    async render() {
-        return `
+  async render(){
+    return `
       <section class="hero">
         <span class="tag">Destaque</span>
         <h1>A Lenda do Herói — humor musical em plataforma</h1>
@@ -24,12 +19,12 @@ export const NovidadesView = {
       </section>
       ${Footer()}
     `;
-    },
-    async mount() {
-        const data = await loadGames();
-        const outros = data.filter(g => g.featured || g.ano >= 2021);
-        const grid = document.querySelector('[data-grid]');
-        const cards = (g) => `
+  },
+  async mount(){
+    const data = await loadGames();
+    const outros = data.filter(g => g.featured || g.ano >= 2021);
+    const grid = document.querySelector('[data-grid]');
+    grid.innerHTML = outros.map(g => `
       <article class="card" tabindex="0" aria-labelledby="${g.slug}-title">
         <a href="jogo/${g.slug}" data-link>
           <img src="${g.img}" alt="Capa do jogo ${g.nome}" loading="lazy" />
@@ -45,7 +40,7 @@ export const NovidadesView = {
             <a class="btn" href="${g.link}" target="_blank" rel="noopener">Conhecer</a>
           </div>
         </div>
-      </article>`;
-        grid.innerHTML = outros.map(cards).join('');
-    }
+      </article>
+    `).join('');
+  }
 };
