@@ -15,7 +15,7 @@ export const NovidadesView = {
         <p>Uma aventura brasileira com trilha que canta suas ações em tempo real.</p>
         <div class="controls">
           <a class="btn" href="https://alendadoheroi.com.br" target="_blank" rel="noopener">Conhecer</a>
-          <a class="btn secondary" href="/" data-link>Voltar ao catálogo</a>
+          <a class="btn secondary" href="." data-link>Voltar ao catálogo</a>
         </div>
       </section>
       <section aria-labelledby="outras">

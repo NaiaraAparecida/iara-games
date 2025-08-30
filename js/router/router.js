@@ -6,9 +6,8 @@ import { FavoritosView } from './views/FavoritosView.js';
 const BASE = document.querySelector('base')?.getAttribute('href') || '/';
 
 function spaPath(){
-  const b = new URL(BASE, location.origin);
-  let p = location.pathname.slice(b.pathname.length - 1);
-  if(!p.startsWith('/')) p = '/'+p;
+  let p = location.pathname;
+  if (!p.startsWith('/')) p = '/' + p;
   return p;
 }
 function navigateTo(path){
