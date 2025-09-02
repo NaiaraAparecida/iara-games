@@ -16,7 +16,7 @@ export function card(g){
   const isFav = favorites.has(g.slug);
   return `
   <article class="card" tabindex="0" aria-labelledby="${g.slug}-title">
-    <a href="../pages/game.html?slug=${encodeURIComponent(g.slug)}" aria-label="Ver ${g.nome}">
+    <a href="/pages/game.html?slug=${encodeURIComponent(g.slug)}" aria-label="Ver ${g.nome}">
       <img src="${g.img}" alt="Capa do jogo ${g.nome}" loading="lazy" />
     </a>
     <button class="fav-ico" data-slug="${g.slug}" aria-pressed="${String(isFav)}"

@@ -1,41 +1,7 @@
+// js/page-index.js
 import { loadGames } from './loader.js';
 import { favorites } from './favorites.js';
-import { Footer } from './ui.js';
-
-const currency = v => v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
-function pixelHeart(on=true){ return on ? /* SVG cheio */ `
-<svg class="heart-pixel" viewBox="0 0 9 8" aria-hidden="true">
-  <g fill="#E53935"><rect x="1" y="0" width="1" height="1"/><rect x="2" y="0" width="1" height="1"/>
-  <rect x="6" y="0" width="1" height="1"/><rect x="7" y="0" width="1" height="1"/>
-  <rect x="0" y="1" width="1" height="1"/><rect x="1" y="1" width="1" height="1"/>
-  <rect x="2" y="1" width="1" height="1"/><rect x="3" y="1" width="1" height="1"/>
-  <rect x="5" y="1" width="1" height="1"/><rect x="6" y="1" width="1" height="1"/>
-  <rect x="7" y="1" width="1" height="1"/><rect x="8" y="1" width="1" height="1"/>
-  <rect x="0" y="2" width="1" height="1"/><rect x="1" y="2" width="1" height="1"/>
-  <rect x="2" y="2" width="1" height="1"/><rect x="3" y="2" width="1" height="1"/>
-  <rect x="4" y="2" width="1" height="1"/><rect x="5" y="2" width="1" height="1"/>
-  <rect x="6" y="2" width="1" height="1"/><rect x="7" y="2" width="1" height="1"/>
-  <rect x="8" y="2" width="1" height="1"/><rect x="1" y="3" width="1" height="1"/>
-  <rect x="2" y="3" width="1" height="1"/><rect x="3" y="3" width="1" height="1"/>
-  <rect x="4" y="3" width="1" height="1"/><rect x="5" y="3" width="1" height="1"/>
-  <rect x="6" y="3" width="1" height="1"/><rect x="7" y="3" width="1" height="1"/>
-  <rect x="2" y="4" width="1" height="1"/><rect x="3" y="4" width="1" height="1"/>
-  <rect x="4" y="4" width="1" height="1"/><rect x="5" y="4" width="1" height="1"/>
-  <rect x="6" y="4" width="1" height="1"/><rect x="3" y="5" width="1" height="1"/>
-  <rect x="4" y="5" width="1" height="1"/><rect x="5" y="5" width="1" height="1"/>
-  <rect x="4" y="6" width="1" height="1"/></g>
-  <g fill="#fff"><rect x="1" y="1" width="1" height="1"/><rect x="2" y="1" width="1" height="1"/></g>
-</svg>` : /* SVG contorno */ `
-<svg class="heart-pixel" viewBox="0 0 9 8" aria-hidden="true"><g fill="#111">
-  <rect x="1" y="0" width="1" height="1"/><rect x="2" y="0" width="1" height="1"/>
-  <rect x="6" y="0" width="1" height="1"/><rect x="7" y="0" width="1" height="1"/>
-  <rect x="0" y="1" width="1" height="1"/><rect x="4" y="1" width="1" height="1"/><rect x="8" y="1" width="1" height="1"/>
-  <rect x="0" y="2" width="1" height="1"/><rect x="8" y="2" width="1" height="1"/>
-  <rect x="1" y="3" width="1" height="1"/><rect x="7" y="3" width="1" height="1"/>
-  <rect x="2" y="4" width="1" height="1"/><rect x="6" y="4" width="1" height="1"/>
-  <rect x="3" y="5" width="1" height="1"/><rect x="5" y="5" width="1" height="1"/>
-  <rect x="4" y="6" width="1" height="1"/></g></svg>`;
-}
+import { card } from './ui.js';
 
 const state = { search:'', genre:'Todos', price:'Todos', sort:'Relevância', fav:false };
 let DATA = [];
@@ -64,89 +30,45 @@ function sortList(list){
     default: return list;
   }
 }
-function card(g){
-  const isFav = favorites.has(g.slug);
-  return `
-  <article class="card" tabindex="0" aria-labelledby="${g.slug}-title">
-    <a href="jogo/${g.slug}" data-link aria-label="Ver detalhes de ${g.nome}">
-      <img src="${g.img}" alt="Capa do jogo ${g.nome}" loading="lazy" />
-    </a>
-    <button class="fav-ico" data-slug="${g.slug}" aria-pressed="${String(isFav)}"
-            aria-label="${isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
-      ${pixelHeart(isFav)}
-    </button>
-    <div class="body">
-      <h3 id="${g.slug}-title">${g.nome}</h3>
-      <div class="meta">
-        <span class="badge">${g.studio}</span>
-        ${(g.genero || []).map(x => `<span class="badge">${x}</span>`).join('')}
-        <span class="badge">${g.ano}</span>
-      </div>
-      <div class="actions">
-        <span class="price">${currency(g.preco)}</span>
-        <a class="btn" href="${g.link}" target="_blank" rel="noopener">Comprar</a>
-      </div>
-    </div>
-  </article>`;
+
+function bindFavClicks(root){
+  root.querySelectorAll('.fav-ico').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+      e.preventDefault(); e.stopPropagation();
+      favorites.toggle(btn.dataset.slug);
+      render();
+    });
+  });
 }
 
-export const HomeView = {
-  async render(){
-    return `
-      <section class="hero">
-        <span class="tag">Plataforma focada em jogos brasileiros</span>
-        <h1>Descubra, apoie e jogue títulos feitos no Brasil</h1>
-        <p>Catálogo com curadoria, filtros por gênero e preço, e links oficiais para conhecer e comprar.</p>
-        <div class="controls" role="region" aria-label="Filtros de catálogo">
-          <input id="search" class="input" type="search" placeholder="Pesquisar por nome ou estúdio" aria-label="Pesquisar" />
-          <select id="genre" class="select" aria-label="Filtrar por gênero"></select>
-          <select id="price" class="select" aria-label="Filtrar por preço"></select>
-          <select id="sort" class="select" aria-label="Ordenar"></select>
-          <label class="checkbox-inline"><input id="onlyFav" type="checkbox"> Apenas favoritos</label>
-          <button id="clear" class="btn secondary" type="button">Limpar</button>
-        </div>
-      </section>
-      <section aria-labelledby="lista">
-        <h2 id="lista" class="sr-only">Lista de jogos</h2>
-        <div class="grid" data-grid></div>
-      </section>
-      ${Footer()}
-    `;
-  },
-  async mount(){
-    DATA = await loadGames();
-    console.log('[HomeView] Jogos carregados:', DATA.length, DATA);
-    const $ = (s,r=document)=>r.querySelector(s);
+function render(){
+  const grid = document.getElementById('grid');
+  let list = DATA.filter(matchFilters);
+  list = sortList(list);
+  grid.innerHTML = list.length ? list.map(card).join('') : `<p>Nenhum jogo encontrado.</p>`;
+  bindFavClicks(grid);
+}
 
-    $('#genre').innerHTML = uniqueGenres(DATA).map(g => `<option value="${g}">${g}</option>`).join('');
-    $('#price').innerHTML = ['Todos','Até R$50','R$50–R$80','R$80–R$120','R$120+'].map(p => `<option value="${p}">${p}</option>`).join('');
-    $('#sort').innerHTML = ['Relevância','Preço: menor → maior','Preço: maior → menor','Ano: mais novo → antigo','Ano: antigo → novo'].map(s => `<option value="${s}">${s}</option>`).join('');
+async function bootstrap(){
+  DATA = await loadGames();
 
-    const renderList = () => {
-      const grid = document.querySelector('[data-grid]');
-      let list = DATA.filter(matchFilters);
-      list = sortList(list);
-      grid.innerHTML = list.length ? list.map(card).join('') : `<p role="status">Nenhum jogo encontrado.</p>`;
-      grid.querySelectorAll('.fav-ico').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault(); e.stopPropagation();
-          favorites.toggle(btn.dataset.slug);
-          renderList();
-        });
-      });
-    };
+  const $ = s => document.querySelector(s);
+  $('#genre').innerHTML = uniqueGenres(DATA).map(g => `<option value="${g}">${g}</option>`).join('');
+  $('#price').innerHTML = ['Todos','Até R$50','R$50–R$80','R$80–R$120','R$120+'].map(p => `<option value="${p}">${p}</option>`).join('');
+  $('#sort').innerHTML = ['Relevância','Preço: menor → maior','Preço: maior → menor','Ano: mais novo → antigo','Ano: antigo → novo'].map(s => `<option value="${s}">${s}</option>`).join('');
 
-    $('#search').addEventListener('input', e => { state.search = e.target.value; renderList(); });
-    $('#genre').addEventListener('change', e => { state.genre = e.target.value; renderList(); });
-    $('#price').addEventListener('change', e => { state.price = e.target.value; renderList(); });
-    $('#sort').addEventListener('change', e => { state.sort = e.target.value; renderList(); });
-    $('#onlyFav').addEventListener('change', e => { state.fav = e.target.checked; renderList(); });
-    $('#clear').addEventListener('click', ()=>{
-      state.search=''; state.genre='Todos'; state.price='Todos'; state.sort='Relevância'; state.fav=false;
-      $('#search').value=''; $('#genre').value='Todos'; $('#price').value='Todos'; $('#sort').value='Relevância'; $('#onlyFav').checked=false;
-      renderList();
-    });
+  $('#search').addEventListener('input', e=>{ state.search = e.target.value; render(); });
+  $('#genre').addEventListener('change', e=>{ state.genre = e.target.value; render(); });
+  $('#price').addEventListener('change', e=>{ state.price = e.target.value; render(); });
+  $('#sort').addEventListener('change', e=>{ state.sort = e.target.value; render(); });
+  $('#onlyFav').addEventListener('change', e=>{ state.fav = e.target.checked; render(); });
+  $('#clear').addEventListener('click', ()=>{
+    state.search=''; state.genre='Todos'; state.price='Todos'; state.sort='Relevância'; state.fav=false;
+    $('#search').value=''; $('#genre').value='Todos'; $('#price').value='Todos'; $('#sort').value='Relevância'; $('#onlyFav').checked=false;
+    render();
+  });
 
-    renderList();
-  }
-};
+  render();
+}
+
+bootstrap();
