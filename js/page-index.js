@@ -1,6 +1,6 @@
-import { loadGames } from '../../data/loader.js';
-import { favorites } from '../../favorites.js';
-import { Footer } from './Footer.js';
+import { loadGames } from './loader.js';
+import { favorites } from './favorites.js';
+import { Footer } from './ui.js';
 
 const currency = v => v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 function pixelHeart(on=true){ return on ? /* SVG cheio */ `

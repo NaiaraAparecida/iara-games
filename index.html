@@ -3,44 +3,46 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Iara Games — plataforma que reúne e destaca jogos brasileiros." />
-  <title>Iara Games — Jogos brasileiros</title>
-
-  <!-- fontes + css -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/main.css" />
+  <title>Iara Games — Catálogo</title>
+  <link rel="stylesheet" href="./css/main.css" />
 </head>
 <body>
   <header class="nav">
     <div class="container inner">
-      <a class="brand" href="." data-link aria-label="Página inicial Iara Games">
-        <img src="assets/images/LogoSemFundo.png" alt="Logo Iara Games" />
-        <span>Iara Games</span>
-      </a>
-      <nav aria-label="Principal">
-        <a class="link" href="." data-link>Catálogo</a>
-        <a class="link" href="novidades" data-link>Novidades</a>
-        <a class="link" href="favoritos" data-link>Favoritos</a>
+      <a class="brand" href="./index.html"><img src="./assets/images/LogoSemFundo.png" alt="" /><span>Iara Games</span></a>
+      <nav>
+        <a class="link" href="./index.html">Catálogo</a>
+        <a class="link" href="./pages/novidades.html">Novidades</a>
+        <a class="link" href="./pages/favoritos.html">Favoritos</a>
       </nav>
     </div>
   </header>
 
-  <!-- SPA monta tudo aqui -->
-  <main id="app" class="container app-main"></main>
+  <main class="container app-main">
+    <section class="hero">
+      <span class="tag">Plataforma focada em jogos brasileiros</span>
+      <h1>Descubra, apoie e jogue títulos feitos no Brasil</h1>
+      <p>Catálogo com curadoria, filtros por gênero e preço, e links oficiais.</p>
+      <div class="controls">
+        <input id="search" class="input" type="search" placeholder="Pesquisar por nome ou estúdio" />
+        <select id="genre" class="select"></select>
+        <select id="price" class="select"></select>
+        <select id="sort" class="select"></select>
+        <label class="checkbox-inline"><input id="onlyFav" type="checkbox" /> Apenas favoritos</label>
+        <button id="clear" class="btn secondary" type="button">Limpar</button>
+      </div>
+    </section>
 
-  <footer>
-    <div class="container bottom-footer">
-      <p>
-        Copyright &copy; 2025
-        <a href="https://naiaracruz.dev" class="footer-link" target="_blank" rel="noopener">Naiara Cruz</a>
-        — Todos os direitos reservados
-      </p>
-    </div>
-  </footer>
+    <section aria-labelledby="lista">
+      <h2 id="lista" class="sr-only">Lista de jogos</h2>
+      <div class="grid" id="grid"></div>
+    </section>
+  </main>
 
-  <!-- router da SPA -->
-  <script type="module" src="js/router/router.js"></script>
+  <footer><div class="container bottom-footer">
+    <p>Copyright © 2025 <a href="https://naiaracruz.dev" target="_blank" rel="noopener">Naiara Cruz</a> — Todos os direitos reservados</p>
+  </div></footer>
+
+  <script type="module" src="./js/page-index.js"></script>
 </body>
 </html>
