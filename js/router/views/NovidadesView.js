@@ -1,6 +1,7 @@
 import { loadGames } from '../../data/loader.js';
 import { Footer } from './Footer.js';
 
+
 export const NovidadesView = {
   async render(){
     return `
