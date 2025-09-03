@@ -1,30 +1,80 @@
-/* ============ IARA GAMES — Tema Brasil ============ */
-:root {
-    /* Core */
-    --br-blue: #002776;
-    /* azul bandeira */
-    --br-green: #0E7C3A;
-    /* verde bandeira */
-    --br-yellow: #F7D117;
-    /* amarelo bandeira */
-    --br-blue-2: #1E4BB8;
-    /* azul claro de realce */
+/* =========================================================
+   IARA GAMES — CSS principal
+   Organização:
+   00) Tokens / Tema
+   01) Base & Utilitários
+   02) Layout & Container
+   03) Navbar / Sidebar / Toggle
+   04) Seções (Hero / Controles)
+   05) Grid & Cards (favoritos, badges, ações)
+   06) Carrossel
+   07) Skeleton (loading)
+   08) Footer
+   09) Páginas (About)
+   10) Form público (Enviar jogo)
+   11) Pop-up de confirmação
+   12) Media Queries
+   ========================================================= */
 
-    /* UI tokens */
-    --bg: radial-gradient(1200px 800px at 15% 10%, #10265a 0%, #0d2352 35%, #123070 100%);
-    --surface: #122353;
-    /* cartões */
-    --surface-2: #123065;
-    /* navbar/elementos */
-    --text: #F5F7FA;
-    --muted: #C9D2E3;
-    --border: rgba(255, 255, 255, .08);
-    --radius: 16px;
-    --shadow: 0 12px 32px rgba(0, 0, 0, .22);
+/* ============ 00) Tokens / Tema ============ */
+:root {
+    /* Paleta Brasil */
+    --br-blue: #002776;
+    --br-green: #0E7C3A;
+    --br-yellow: #F7D117;
+    --br-blue-2: #1E4BB8;
+
+    /* Tema DARK (default) */
+    --bg: #0b1535;
+    --fg: #eaf2ff;
+    --muted: #a6b4d6;
+
+    --card: #10224a;
+    --card-2: #0f2a55;
+    --border: rgba(255, 255, 255, .12);
+
+    --brand: #1fbf7c;
+    /* ação primária */
+    --accent: #1E88E5;
+    /* botões/links */
+
+    --radius: 14px;
+    --shadow: 0 6px 20px rgba(0, 0, 0, .15);
     --focus: 0 0 0 3px rgba(247, 209, 23, .45);
-    /* amarelo */
 }
 
+:root[data-theme="light"] {
+    /* base */
+    --bg: #F6F9FF;
+    --fg: #0B1535;
+    --muted: #4B5A79;
+
+    /* superfícies */
+    --card: #FFFFFF;
+    --card-2: #F1F6FF;
+    --border: #E4ECF7;
+
+    /* ações/marca */
+    --brand: #11A86D;
+    --accent: #1E88E5;
+}
+
+/* transição suave ao alternar tema */
+html[data-theme="light"],
+html[data-theme="dark"] {
+    transition: background-color .15s ease, color .15s ease;
+}
+
+/* Fundo especial (efeito radial) para tema claro */
+:root[data-theme="light"] body {
+    background:
+        radial-gradient(1200px 600px at 20% -10%, #E9F2FF 0%, transparent 70%),
+        radial-gradient(1200px 600px at 80% -10%, #E8FFF4 0%, transparent 70%),
+        var(--bg);
+    color: var(--fg);
+}
+
+/* ============ 01) Base & Utilitários ============ */
 * {
     box-sizing: border-box;
 }
@@ -38,45 +88,11 @@ body {
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Poppins, Arial, sans-serif;
     font-size: 1.6rem;
     line-height: 1.6;
-    color: var(--text);
+    color: var(--fg);
     background: var(--bg);
     min-height: 100vh;
 }
 
-/* skeleton loading */
-.skeleton {
-    border-radius: 14px;
-    overflow: hidden;
-    background: #0f2a55;
-}
-
-.skeleton-img {
-    height: 180px;
-    background: linear-gradient(90deg, #102a55 25%, #163769 50%, #102a55 75%);
-    background-size: 400% 100%;
-    animation: shimmer 1.2s infinite;
-}
-
-.skeleton-line {
-    height: 14px;
-    border-radius: 8px;
-    background: linear-gradient(90deg, #102a55 25%, #163769 50%, #102a55 75%);
-    background-size: 400% 100%;
-    animation: shimmer 1.2s infinite;
-}
-
-@keyframes shimmer {
-    0% {
-        background-position: 0 0
-    }
-
-    100% {
-        background-position: 100% 0
-    }
-}
-
-
-/* Links e focos */
 a {
     color: inherit;
     text-decoration: none;
@@ -85,25 +101,60 @@ a {
 a:focus,
 button:focus,
 select:focus,
-input:focus {
+input:focus,
+textarea:focus {
     outline: none;
     box-shadow: var(--focus);
     border-radius: 10px;
     transition: box-shadow .15s;
 }
 
+.sr-only {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Scrollbar (webkit) */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #152C63;
+    border-radius: 999px;
+    border: 2px solid #0b1535;
+}
+
+/* ============ 02) Layout & Container ============ */
 .container {
     width: min(1120px, 92%);
     margin: 0 auto;
 }
 
-/* ============ Navbar ============ */
+.app-main {
+    padding: 24px 0;
+}
+
+/* ============ 03) Navbar / Sidebar / Toggle ============ */
 .nav {
     position: sticky;
     top: 0;
     z-index: 20;
     backdrop-filter: blur(8px);
     background: linear-gradient(180deg, rgba(8, 26, 60, .85), rgba(8, 26, 60, .55));
+    border-bottom: 1px solid var(--border);
+}
+
+:root[data-theme="light"] .nav {
+    background: linear-gradient(180deg, rgba(255, 255, 255, .85) 0%, rgba(255, 255, 255, .65) 100%);
     border-bottom: 1px solid var(--border);
 }
 
@@ -145,7 +196,64 @@ input:focus {
     background: rgba(247, 209, 23, .16);
 }
 
-/* ============ Hero ============ */
+.hamburger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    background: transparent;
+    border: 1px solid var(--card-2);
+    border-radius: 10px;
+    color: var(--fg);
+}
+
+.theme-toggle {
+    background: var(--card-2);
+    border: none;
+    color: var(--fg);
+    padding: 8px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 260px;
+    height: 100dvh;
+    background: var(--card);
+    padding: 20px;
+    transition: left .2s ease;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-right: 1px solid var(--border);
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: #0008;
+    opacity: 0;
+    pointer-events: none;
+    transition: .2s;
+    z-index: 40;
+}
+
+.nav-open .sidebar {
+    left: 0;
+}
+
+.nav-open .overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ============ 04) Seções (Hero / Controles) ============ */
 .hero {
     padding: 56px 0 18px;
 }
@@ -180,7 +288,6 @@ input:focus {
     filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .15));
 }
 
-/* ============ Controles ============ */
 .controls {
     display: flex;
     gap: 12px;
@@ -191,8 +298,8 @@ input:focus {
 
 .input,
 .select {
-    background: #0C1A3A;
-    color: var(--text);
+    background: var(--card-2);
+    color: var(--fg);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 10px 12px;
@@ -207,7 +314,7 @@ input:focus {
 }
 
 .btn {
-    background: var(--br-green);
+    background: var(--accent);
     color: #fff;
     border: none;
     border-radius: 12px;
@@ -215,7 +322,7 @@ input:focus {
     font-weight: 800;
     cursor: pointer;
     transition: transform .15s, box-shadow .15s;
-    box-shadow: 0 6px 18px rgba(14, 124, 58, .35);
+    box-shadow: 0 6px 18px rgba(30, 136, 229, .20);
 }
 
 .btn:hover {
@@ -223,10 +330,10 @@ input:focus {
 }
 
 .btn.secondary {
-    background: linear-gradient(180deg, #11306B, #0E2A5E);
-    color: #E9F0FF;
+    background: var(--card-2);
+    color: var(--fg);
     border: 1px solid var(--border);
-    box-shadow: 0 6px 18px rgba(0, 39, 118, .25);
+    box-shadow: none;
 }
 
 .btn.warning {
@@ -235,16 +342,17 @@ input:focus {
     box-shadow: 0 6px 18px rgba(247, 209, 23, .35);
 }
 
-/* ============ Grid & Cards ============ */
+/* ============ 05) Grid & Cards ============ */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 22px;
+    gap: 16px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
     margin: 18px 0 60px;
 }
 
 .card {
-    background: linear-gradient(180deg, var(--surface), #0A1A39);
+    position: relative;
+    background: var(--card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
@@ -263,7 +371,7 @@ input:focus {
     width: 100%;
     height: auto;
     display: block;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16/9;
     object-fit: cover;
 }
 
@@ -277,7 +385,7 @@ input:focus {
     letter-spacing: .2px;
 }
 
-.card .meta {
+.meta {
     color: var(--muted);
     font-size: 1.25rem;
     margin-bottom: 10px;
@@ -291,17 +399,11 @@ input:focus {
     align-items: center;
     gap: 6px;
     font-size: 1.15rem;
-    background: rgba(30, 75, 184, .18);
-    border: 1px solid rgba(30, 75, 184, .35);
+    background: var(--card-2);
+    border: 1px solid var(--border);
     padding: 4px 8px;
     border-radius: 999px;
-    color: #D6E2FF;
-}
-
-.badge:nth-child(2) {
-    background: rgba(14, 124, 58, .16);
-    border-color: rgba(14, 124, 58, .35);
-    color: #CFF5DD;
+    color: var(--fg);
 }
 
 .price {
@@ -316,6 +418,7 @@ input:focus {
     margin-top: auto;
 }
 
+/* checkbox "Apenas favoritos" */
 .checkbox-inline {
     display: flex;
     align-items: center;
@@ -325,105 +428,43 @@ input:focus {
 }
 
 .checkbox-inline input[type="checkbox"] {
-    accent-color: var(--br-green);
+    accent-color: var(--brand);
     width: 16px;
     height: 16px;
     cursor: pointer;
 }
 
-/* Ícone favorito (coração pixel) */
-.card {
-    position: relative;
-}
-
+/* Ícone favorito */
 .fav-ico {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    z-index: 2;
+    top: 10px;
+    right: 10px;
     width: 38px;
     height: 38px;
-    border: 0;
-    border-radius: 10px;
-    background: rgba(8, 26, 60, .55);
-    backdrop-filter: blur(6px);
+    border-radius: 999px;
     display: grid;
     place-items: center;
+    background: rgba(0, 0, 0, .35);
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255, 255, 255, .25);
     cursor: pointer;
-    transition: transform .15s, background .15s, box-shadow .15s;
+    transition: transform .15s ease, background .15s, box-shadow .15s;
     box-shadow: 0 6px 14px rgba(0, 0, 0, .25);
+}
+
+:root[data-theme="light"] .fav-ico {
+    background: rgba(255, 255, 255, .9);
+    border: 1px solid var(--border);
+    box-shadow: 0 6px 16px rgba(15, 30, 65, .10);
 }
 
 .fav-ico:hover {
     transform: translateY(-1px);
 }
 
-.fav-ico svg.heart-pixel {
-    width: 20px;
-    height: 18px;
-    shape-rendering: crispEdges;
-    /* visual 8-bit */
-}
-
-
-
-
-/* ============ Footer ============ */
-.bottom-footer {
-    text-align: center;
-    padding: 20px 0;
-    font-size: 1.4rem;
-    color: var(--muted);
-    border-top: 1px solid var(--border);
-}
-
-.footer-link {
-    color: var(--br-yellow);
-    font-weight: 600;
-    text-decoration: none;
-    transition: color .2s;
-}
-
-.footer-link:hover {
-    color: var(--br-green);
-    text-decoration: underline;
-}
-
-.fav-ico {
-    transition: transform .15s ease;
-}
-
 .fav-ico.animated {
     animation: pulse .25s ease;
 }
-
-.empty {
-    text-align: center;
-    margin: 40px 0;
-}
-
-.empty .btn {
-    margin-top: 12px;
-}
-
-.grid {
-    display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-}
-
-@media (min-width:640px) {
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width:1024px) {
-    .grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
 
 @keyframes pulse {
     0% {
@@ -439,175 +480,11 @@ input:focus {
     }
 }
 
-/* Acessibilidade utilitários */
-.sr-only {
-    position: absolute !important;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-/* Scrollbar (webkit) */
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #152C63;
-    border-radius: 999px;
-    border: 2px solid #0b1535;
-}
-
-.app-main {
-    padding: 24px 0;
-}
-
-/* --------- tema (variáveis) --------- */
-:root {
-    --bg: #0b1535;
-    --fg: #eaf2ff;
-    --muted: #a6b4d6;
-    --card: #10224a;
-    --card-2: #0f2a55;
-    --brand: #1fbf7c;
-    --accent: #1E88E5;
-}
-
-:root[data-theme="light"] {
-    --bg: #f7fbff;
-    --fg: #0b1535;
-    --muted: #4b5a79;
-    --card: #ffffff;
-    --card-2: #f1f5ff;
-    --brand: #0f9f5f;
-    --accent: #1565C0;
-}
-
-body {
-    background: var(--bg);
-    color: var(--fg);
-}
-
-/* --------- navbar + sidebar --------- */
-.hamburger {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-    background: transparent;
-    border: 1px solid var(--card-2);
-    border-radius: 10px;
-    color: var(--fg);
-}
-
-.desktop-nav {
-    display: none;
-    gap: 12px;
-    align-items: center;
-}
-
-.theme-toggle {
-    background: var(--card-2);
-    border: none;
-    color: var(--fg);
-    padding: 8px 10px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: -280px;
-    width: 260px;
-    height: 100dvh;
-    background: var(--card);
-    padding: 20px;
-    transition: left .2s ease;
-    z-index: 50;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: #0008;
-    opacity: 0;
-    pointer-events: none;
-    transition: .2s;
-    z-index: 40;
-}
-
-.nav-open .sidebar {
-    left: 0;
-}
-
-.nav-open .overlay {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-/* desktop */
-@media (min-width:768px) {
-    .hamburger {
-        display: none;
-    }
-
-    .desktop-nav {
-        display: flex;
-    }
-
-    .sidebar,
-    .overlay {
-        display: none;
-    }
-}
-
-/* --------- cards / fav --------- */
-.card {
-    position: relative;
-    background: var(--card);
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, .15);
-}
-
-.card img {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-.fav-ico {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 38px;
-    height: 38px;
-    border-radius: 999px;
-    display: grid;
-    place-items: center;
-    background: rgba(0, 0, 0, .35);
-    backdrop-filter: blur(2px);
-    border: 1px solid rgba(255, 255, 255, .25);
-    cursor: pointer;
-}
-
-/* --------- carrossel --------- */
+/* ============ 06) Carrossel ============ */
 .carousel {
     position: relative;
     overflow: hidden;
-    border-radius: 14px;
+    border-radius: var(--radius);
     background: var(--card-2);
 }
 
@@ -645,60 +522,9 @@ body {
     right: 10px;
 }
 
-/* --------- grids e helpers --------- */
-.grid {
-    display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-}
-
-@media (min-width:640px) {
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width:1024px) {
-    .grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-.empty {
-    text-align: center;
-    margin: 40px 0;
-}
-
-.empty .btn {
-    margin-top: 12px;
-}
-
-/* animação fav */
-.fav-ico {
-    transition: transform .15s ease;
-}
-
-.fav-ico.animated {
-    animation: pulse .25s ease;
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1)
-    }
-
-    50% {
-        transform: scale(1.25)
-    }
-
-    100% {
-        transform: scale(1)
-    }
-}
-
-/* skeleton */
+/* ============ 07) Skeleton (loading) ============ */
 .skeleton {
-    border-radius: 14px;
+    border-radius: var(--radius);
     overflow: hidden;
     background: var(--card-2);
 }
@@ -729,47 +555,191 @@ body {
     }
 }
 
-/* links/botões */
-a.link,
-.btn {
-    color: var(--fg);
+/* ============ 08) Footer ============ */
+.bottom-footer {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1.4rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
 }
 
-.btn {
-    background: var(--accent);
-    padding: 8px 14px;
-    border: none;
-    border-radius: 10px;
-    color: #fff;
-    cursor: pointer;
+.footer-link {
+    color: var(--br-yellow);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color .2s;
 }
 
-.btn.secondary {
-    background: var(--card-2);
-    color: var(--fg);
+.footer-link:hover {
+    color: var(--br-green);
+    text-decoration: underline;
 }
 
+/* ============ 09) Páginas (About) ============ */
 .about-section {
-  margin-bottom: 2rem;
-  line-height: 1.6;
+    margin-bottom: 2rem;
+    line-height: 1.6;
 }
 
 .about-section h2 {
-  margin-bottom: 0.5rem;
+    margin-bottom: .5rem;
 }
 
 .about-list {
-  margin-top: 1rem;
-  list-style: none;
-  padding-left: 0;
+    margin-top: 1rem;
+    list-style: none;
+    padding-left: 0;
 }
 
 .about-list li {
-  margin-bottom: 0.5rem;
+    margin-bottom: .5rem;
 }
 
 .about-footer {
-  text-align: center;
-  margin-top: 3rem;
-  font-size: 1.1rem;
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 1.1rem;
+}
+
+/* ============ 10) Form público (Enviar jogo) ============ */
+.form-card {
+    padding: 16px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.field {
+    display: grid;
+    gap: 6px;
+}
+
+.field.wide {
+    grid-column: 1 / -1;
+}
+
+.field label {
+    font-weight: 600;
+}
+
+.field .hint {
+    color: var(--muted);
+    font-size: .9rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+}
+
+.form-feedback {
+    display: block;
+    margin-top: 10px;
+    color: var(--fg);
+}
+
+/* inputs combinando com tema */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
+    width: 100%;
+    background: var(--card-2);
+    color: var(--fg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #BED4FF;
+    box-shadow: 0 0 0 3px rgba(30, 136, 229, .15);
+}
+
+/* ============ 11) Pop-up de confirmação ============ */
+.popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.popup[hidden] {
+    display: none;
+}
+
+.popup-content {
+    background: var(--card);
+    color: var(--fg);
+    padding: 24px;
+    border-radius: 16px;
+    max-width: 360px;
+    text-align: center;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .25);
+    animation: pop .3s ease;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(.8);
+        opacity: 0
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1
+    }
+}
+
+/* =========================================================
+   12) MEDIA QUERIES (todas no final)
+   ========================================================= */
+
+/* Grid responsivo (catálogo) */
+@media (min-width: 640px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Navbar desktop */
+@media (min-width: 768px) {
+    .hamburger {
+        display: none;
+    }
+
+    .desktop-nav {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+
+    .sidebar,
+    .overlay {
+        display: none;
+    }
+}
+
+/* Form (enviar jogo) 2 colunas */
+@media (min-width: 720px) {
+    .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
