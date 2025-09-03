@@ -1,53 +1,119 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sobre — Iara Games</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="../css/main.css" />
-  <meta name="description" content="Iara Games é uma vitrine de jogos brasileiros feita em vanilla JS.">
-  <meta name="theme-color" content="#0b1535">
-  <meta property="og:site_name" content="Iara Games">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Iara Games — jogos brasileiros">
-  <meta property="og:description" content="Descubra, apoie e jogue títulos feitos no Brasil.">
-  <meta property="og:image" content="../assets/social/og-cover.png">
-  <link rel="icon" href="../assets/icons/favicon.png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sobre — Iara Games</title>
+
+    <!-- SEO / Social -->
+    <meta name="description"
+        content="Iara Games é uma vitrine independente dedicada a jogos brasileiros — celebrando criatividade, conectando comunidade e inspirando novos criadores." />
+    <meta name="theme-color" content="#0b1535" />
+    <meta property="og:site_name" content="Iara Games" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sobre — Iara Games" />
+    <meta property="og:description"
+        content="Conheça a história, essência e visão do Iara Games: um espaço para descobrir, apoiar e se orgulhar dos jogos feitos no Brasil." />
+    <meta property="og:image" content="../assets/social/og-cover.png" />
+
+    <!-- Styles / Icon -->
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="icon" href="../assets/images/LogoSemFundo.png" />
 </head>
+
 <body>
-  <header class="nav">
-    <div class="container inner">
-      <a class="brand" href="../index.html"><img src="../assets/images/LogoSemFundo.png" alt=""><span>Iara Games</span></a>
-      <nav>
-        <a class="link" href="../index.html">Catálogo</a>
-        <a class="link" href="novidades.html">Novidades</a>
-        <a class="link" href="favoritos.html">Favoritos</a>
-        <a class="link" href="sobre.html" aria-current="page">Sobre</a>
-      </nav>
-    </div>
-  </header>
+    <!-- NAV -->
+    <header class="nav">
+        <div class="container inner">
+            <button class="hamburger" aria-label="Abrir menu" data-menu-toggle>☰</button>
+            <a class="brand" href="../index.html" aria-label="Página inicial Iara Games">
+                <img src="../assets/images/LogoSemFundo.png" alt="Logo Iara Games" />
+                <span>Iara Games</span>
+            </a>
+            <nav class="desktop-nav" aria-label="Principal">
+                <a class="link" href="../index.html">Catálogo</a>
+                <a class="link" href="./novidades.html">Novidades</a>
+                <a class="link" href="./favoritos.html">Favoritos</a>
+                <a class="link" href="./sobre.html" aria-current="page">Sobre</a>
+                <a class="link" href="./admin.html">Admin (demo)</a>
+                <button class="theme-toggle" data-theme-toggle title="Alternar tema">🌓</button>
+            </nav>
+        </div>
 
-  <main class="container app-main">
-    <h1>Sobre o projeto</h1>
-    <p>O Iara Games é uma plataforma estática (HTML+CSS+JS) focada em jogos brasileiros.
-       Recursos: catálogo com filtros compartilháveis, favoritos (LocalStorage), página de detalhes e área de novidades.</p>
-    <ul>
-      <li>Stack: Vanilla JS, CSS, multipágina</li>
-      <li>Dados: <code>games.json</code></li>
-      <li>Deploy: GitHub Pages ou Vercel</li>
-    </ul>
-    <p>Feito por <a href="https://naiaracruz.dev" target="_blank" rel="noopener">Naiara Cruz</a>.</p>
-  </main>
+        <!-- Sidebar mobile -->
+        <div class="sidebar" aria-hidden="true">
+            <nav aria-label="Menu">
+                <a class="link" href="../index.html">Catálogo</a>
+                <a class="link" href="./novidades.html">Novidades</a>
+                <a class="link" href="./favoritos.html">Favoritos</a>
+                <a class="link" href="./sobre.html" aria-current="page">Sobre</a>
+                <a class="link" href="./admin.html">Admin (demo)</a>
+                <button class="theme-toggle" data-theme-toggle>Alternar tema</button>
+            </nav>
+        </div>
+        <div class="overlay" data-menu-overlay></div>
+    </header>
 
-  <footer>
-    <div class="container bottom-footer">
-      <p>Copyright © 2025
-        <a href="https://naiaracruz.dev" target="_blank" rel="noopener">Naiara Cruz</a>
-        — Todos os direitos reservados
-      </p>
-    </div>
-  </footer>
+    <!-- MAIN -->
+    <main class="container app-main">
+        <h1>Sobre o Iara Games</h1>
+
+        <section class="about-section">
+            <p>
+                O <strong>Iara Games</strong> nasceu para dar voz e luz aos
+                <strong>jogos produzidos no Brasil</strong>. Assim como a lenda da Iara
+                encanta com sua canção, acreditamos que cada título criado aqui carrega
+                histórias e talentos capazes de conquistar o mundo.
+            </p>
+        </section>
+
+        <section class="about-section">
+            <h2>Nossa essência</h2>
+            <p>
+                Mais do que um catálogo, somos um espaço de celebração da
+                <strong>criatividade brasileira</strong>. Um lugar onde jogadores
+                descobrem pérolas escondidas e desenvolvedores encontram reconhecimento.
+            </p>
+            <ul class="about-list">
+                <li>✨ <strong>Valorizar</strong> a diversidade cultural nos games nacionais.</li>
+                <li>🔎 <strong>Facilitar</strong> a descoberta de títulos independentes.</li>
+                <li>🚀 <strong>Inspirar</strong> novos criadores a acreditarem em suas ideias.</li>
+                <li>🤝 <strong>Conectar</strong> estúdios, jogadores e apaixonados por games.</li>
+            </ul>
+        </section>
+
+        <section class="about-section">
+            <h2>O que queremos alcançar</h2>
+            <p>
+                Queremos que cada visita ao Iara Games seja uma descoberta. Que mais
+                pessoas joguem, apoiem e se orgulhem das produções brasileiras. Quanto
+                mais falarmos sobre os jogos feitos aqui, mais forte será nossa indústria
+                e maiores serão as oportunidades para os criadores do futuro.
+            </p>
+        </section>
+
+        <section class="about-footer">
+            <p>
+                Feito com ❤️ no Brasil por
+                <a class="link" href="https://naiaracruz.dev" target="_blank" rel="noopener">Naiara Cruz</a>.
+            </p>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container bottom-footer">
+            <p>Copyright © 2025
+                <a class="link" href="https://naiaracruz.dev" target="_blank" rel="noopener">Naiara Cruz</a>
+                — Todos os direitos reservados
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="../js/theme.js"></script>
+    <script type="module" src="../js/nav.js"></script>
 </body>
+
 </html>

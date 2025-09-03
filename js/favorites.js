@@ -1,12 +1,38 @@
+// js/favorites.js
 const KEY = 'iara:favorites:v1';
-function read(){ try{ return new Set(JSON.parse(localStorage.getItem(KEY)) || []); }catch{ return new Set(); } }
-function write(set){ localStorage.setItem(KEY, JSON.stringify([...set])); }
+const KEY_COUNT = 'iara:favcount:v1';
+
+function readSet(){
+  try { return new Set(JSON.parse(localStorage.getItem(KEY)) || []); }
+  catch { return new Set(); }
+}
+function writeSet(s){ localStorage.setItem(KEY, JSON.stringify([...s])); }
+
+function readCount(){
+  try { return JSON.parse(localStorage.getItem(KEY_COUNT)) || {}; }
+  catch { return {}; }
+}
+function writeCount(o){ localStorage.setItem(KEY_COUNT, JSON.stringify(o)); }
 
 export const favorites = {
-  has: (slug) => read().has(slug),
-  list: () => [...read()],
-  add: (slug) => { const s = read(); s.add(slug); write(s); },
-  remove: (slug) => { const s = read(); s.delete(slug); write(s); },
-  toggle: (slug) => (favorites.has(slug) ? favorites.remove(slug) : favorites.add(slug))
+  has: (slug) => readSet().has(slug),
+  list: () => [...readSet()],
+  add(slug){
+    const s = readSet(); if (s.has(slug)) return;
+    s.add(slug); writeSet(s);
+    const c = readCount(); c[slug] = (c[slug] || 0) + 1; writeCount(c);
+  },
+  remove(slug){
+    const s = readSet(); if (!s.has(slug)) return;
+    s.delete(slug); writeSet(s);
+    const c = readCount(); c[slug] = Math.max(0, (c[slug] || 0) - 1); writeCount(c);
+  },
+  toggle(slug){ this.has(slug) ? this.remove(slug) : this.add(slug); },
+  count(slug){ return readCount()[slug] || 0; },
+  // ordena uma lista de jogos pela popularidade (mais favoritados)
+  rankByPopularity(list){
+    const c = readCount();
+    return [...list].sort((a,b) => (c[b.slug]||0) - (c[a.slug]||0));
+  }
 };
 

@@ -3,15 +3,9 @@ import { favorites } from './favorites.js';
 export const currency = v =>
   v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
-// estamos em /pages/?
 const IN_PAGES   = location.pathname.includes('/pages/');
 const IMG_PREFIX = IN_PAGES ? '../' : '';
 const GAME_HREF  = IN_PAGES ? 'game.html' : 'pages/game.html';
-
-function webpPath(p) {
-  // tenta trocar png/jpg por webp
-  return p.replace(/\.(png|jpe?g)$/i, '.webp');
-}
 
 export function heart(on = true) {
   return on
@@ -25,16 +19,16 @@ export function heart(on = true) {
 
 export function card(g) {
   const isFav = favorites.has(g.slug);
-  const src    = `${IMG_PREFIX}${g.img}`;
-  const srcWeb = `${IMG_PREFIX}${webpPath(g.img)}`;
+  const favCount = favorites.count(g.slug);
+
+  // prefixo de caminho relativo
+  const IN_PAGES   = location.pathname.includes('/pages/');
+  const IMG_PREFIX = IN_PAGES ? '../' : '';
 
   return `
   <article class="card" tabindex="0" aria-labelledby="${g.slug}-title">
-    <a href="${GAME_HREF}?slug=${encodeURIComponent(g.slug)}" aria-label="Ver ${g.nome}">
-      <picture>
-        <source srcset="${srcWeb}" type="image/webp">
-        <img src="${src}" alt="Capa do jogo ${g.nome}" loading="lazy" width="600" height="338" />
-      </picture>
+    <a href="${IN_PAGES ? 'game.html' : 'pages/game.html'}?slug=${encodeURIComponent(g.slug)}" aria-label="Ver ${g.nome}">
+      <img src="${IMG_PREFIX}${g.img}" alt="Capa do jogo ${g.nome}" loading="lazy" width="600" height="338" />
     </a>
     <button class="fav-ico" data-slug="${g.slug}" aria-pressed="${String(isFav)}"
             aria-label="${isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}"
@@ -47,6 +41,7 @@ export function card(g) {
         <span class="badge">${g.studio}</span>
         ${(g.genero || []).map(x => `<span class="badge">${x}</span>`).join('')}
         <span class="badge">${g.ano}</span>
+        <span class="badge" title="Popularidade">★ ${favCount}</span>
       </div>
       <div class="actions">
         <span class="price">${currency(g.preco)}</span>
@@ -55,4 +50,5 @@ export function card(g) {
     </div>
   </article>`;
 }
+
 
