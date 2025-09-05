@@ -1,4 +1,3 @@
-// js/theme.js
 const STORAGE_KEY = 'iara-theme';
 const root = document.documentElement;
 

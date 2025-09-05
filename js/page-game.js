@@ -1,4 +1,3 @@
-// js/page-game.js
 import { loadGames } from './loader.js';
 import { favorites } from './favorites.js';
 import { currency, heart } from './ui.js';

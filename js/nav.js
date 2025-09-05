@@ -1,4 +1,3 @@
-// js/nav.js
 (function(){
   const btn     = document.querySelector('[data-menu-toggle]');
   const overlay = document.querySelector('[data-menu-overlay]');

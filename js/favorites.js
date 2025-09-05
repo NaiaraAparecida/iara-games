@@ -1,4 +1,3 @@
-// js/favorites.js
 const KEY = 'iara:favorites:v1';
 const KEY_COUNT = 'iara:favcount:v1';
 

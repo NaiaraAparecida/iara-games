@@ -1,4 +1,3 @@
-// js/page-index.js
 import { loadGames } from './loader.js';
 import { favorites } from './favorites.js';
 import { card } from './ui.js';
