@@ -14,30 +14,46 @@
 <body>
     <header class="nav">
         <div class="container inner">
-            <button class="hamburger" aria-label="Abrir menu" data-menu-toggle>☰</button>
-            <a class="brand" href="../index.html">
-                <img src="../assets/images/LogoSemFundo.png" alt="" />
-                <span>Iara Games</span>
+            <button class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu"
+                data-menu-toggle>☰</button>
+
+            <a class="brand" href="../index.html" aria-label="Página inicial Iara Games">
+                <img src="../assets/images/LogoSemFundo.png" alt="">
+                <span><strong>Iara</strong><br><strong>Games</strong></span>
             </a>
-            <nav class="desktop-nav">
+
+            <nav class="desktop-nav" aria-label="Principal">
                 <a class="link" href="../index.html">Catálogo</a>
                 <a class="link" href="./novidades.html">Novidades</a>
                 <a class="link" href="./favoritos.html">Favoritos</a>
                 <a class="link" href="./sobre.html">Sobre</a>
-                <a class="link" href="./enviar-jogo.html" aria-current="page">Enviar jogo</a>
-                <button class="theme-toggle" data-theme-toggle title="Tema">🌓</button>
+                <a class="link" href="./enviar-jogo.html">Enviar jogo</a>
+                <button class="theme-toggle" data-theme-toggle title="Alternar tema">🌓</button>
             </nav>
         </div>
-        <div class="sidebar" aria-hidden="true">
-            <nav>
+
+        <!-- Menu lateral (mobile) -->
+        <!-- Sidebar mobile -->
+        <aside id="mobile-menu" class="sidebar" aria-hidden="true">
+            <div class="side-head">
+                <img class="side-logo" src="../assets/images/LogoSemFundo.png" alt="" />
+                <button class="side-close" type="button" aria-label="Fechar menu" data-menu-close>✕</button>
+            </div>
+
+            <nav class="side-nav" aria-label="Menu móvel">
                 <a class="link" href="../index.html">Catálogo</a>
                 <a class="link" href="./novidades.html">Novidades</a>
                 <a class="link" href="./favoritos.html">Favoritos</a>
                 <a class="link" href="./sobre.html">Sobre</a>
-                <a class="link" href="./enviar-jogo.html" aria-current="page">Enviar jogo</a>
+                <a class="link" href="./enviar-jogo.html">Enviar jogo</a>
+
+                <hr class="side-sep" />
+
+                <button class="theme-toggle side-toggle" data-theme-toggle type="button">Alternar tema</button>
             </nav>
-        </div>
+        </aside>
         <div class="overlay" data-menu-overlay></div>
+
     </header>
 
     <main class="container app-main">
@@ -47,88 +63,91 @@
                 se aprovada, será adicionada ao catálogo.</p>
         </section>
 
-        <form id="submit-form" class="form-card card" novalidate>
+        <form id="submit-form" class="form-card form-modern card" novalidate>
+            <header class="form-head">
+                <div class="form-badge">🎮 Envie seu jogo</div>
+                <h2>Dados do jogo</h2>
+                <p class="muted">Preencha os campos abaixo. Itens com <span class="req">*</span> são obrigatórios.</p>
+            </header>
+
             <fieldset class="form-grid">
                 <div class="field">
-                    <label for="nome">Nome do jogo*</label>
+                    <label for="nome">Nome do jogo <span class="req">*</span></label>
                     <input id="nome" name="nome" required placeholder="Ex: A Lenda do Herói">
-                    <small class="hint">Obrigatório</small>
+                    <small class="hint">Como aparece nas lojas</small>
                 </div>
 
                 <div class="field">
-                    <label for="studio">Estúdio*</label>
+                    <label for="studio">Estúdio <span class="req">*</span></label>
                     <input id="studio" name="studio" required placeholder="Ex: Dumativa">
-                    <small class="hint">Obrigatório</small>
+                    <small class="hint">Pessoa/empresa responsável</small>
                 </div>
 
                 <div class="field">
-                    <label for="ano">Ano*</label>
-                    <input id="ano" name="ano" type="number" min="1980" max="2100" required>
-                    <small class="hint">Ex: 2022</small>
+                    <label for="ano">Ano <span class="req">*</span></label>
+                    <input id="ano" name="ano" type="number" min="1980" max="2100" required placeholder="Ex: 2022">
                 </div>
 
                 <div class="field">
-                    <label for="genero">Gêneros*</label>
+                    <label for="genero">Gêneros <span class="req">*</span></label>
                     <input id="genero" name="genero" required placeholder="Aventura, Plataforma">
                     <small class="hint">Separe por vírgula</small>
                 </div>
 
-                <div class="field">
+                <div class="field with-prefix">
                     <label for="preco">Preço (R$)</label>
-                    <input id="preco" name="preco" type="number" min="0" step="0.01" placeholder="Ex: 79.90">
+                    <span class="prefix">R$</span>
+                    <input id="preco" name="preco" type="number" min="0" step="0.01" placeholder="79,90">
                 </div>
 
                 <div class="field">
-                    <label for="link">Link oficial / loja*</label>
+                    <label for="link">Link oficial / loja <span class="req">*</span></label>
                     <input id="link" name="link" required placeholder="https://...">
+                    <small class="hint">Steam, itch, site oficial, etc.</small>
                 </div>
 
-                <div class="field">
-                    <label for="img">Capa (URL da imagem)*</label>
+                <div class="field wide">
+                    <label for="img">Capa (URL da imagem) <span class="req">*</span></label>
                     <input id="img" name="img" required placeholder="./assets/images/seu-jogo.jpg">
                     <small class="hint">JPG/PNG/WEBP/AVIF — qualquer formato funciona</small>
                 </div>
 
                 <div class="field wide">
                     <label for="descricao">Descrição</label>
-                    <textarea id="descricao" name="descricao" rows="3"
+                    <textarea id="descricao" name="descricao" rows="4"
                         placeholder="Fale brevemente sobre o jogo..."></textarea>
                 </div>
 
                 <div class="field">
                     <label for="trailer">Trailer (YouTube - URL)</label>
-                    <input id="trailer" name="trailer" placeholder="https://youtu.be/XXXXX">
-                </div>
-
-                <div class="field wide">
-                    <label for="shots">Screenshots (uma por linha)</label>
-                    <textarea id="shots" name="shots" rows="3"
-                        placeholder="./assets/images/shot1.png&#10;./assets/images/shot2.jpg"></textarea>
+                    <input id="trailer" name="trailer" placeholder="https://youtu.be/XXXXXXX">
                 </div>
 
                 <div class="field">
-                    <label for="contato">Seu e-mail de contato*</label>
-                    <input id="contato" name="contato" type="email" required placeholder="voce@email.com">
-                    <small class="hint">Só para contato de curadoria</small>
+                    <label for="shots">Screenshots (uma por linha)</label>
+                    <textarea id="shots" name="shots" rows="4"
+                        placeholder="./assets/images/shot1.png&#10;./assets/images/shot2.jpg"></textarea>
                 </div>
+
+                <div class="field wide">
+                    <label for="contato">Seu e-mail de contato <span class="req">*</span></label>
+                    <input id="contato" name="contato" type="email" required placeholder="voce@email.com">
+                    <small class="hint">Somente para contato da curadoria</small>
+                </div>
+
+                <!-- Honeypot anti-spam -->
+                <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off">
             </fieldset>
 
-            <div class="form-actions">
-                <!-- Honeypot anti-spam -->
-                <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+            <footer class="form-actions">
                 <button class="btn" type="submit" id="sendBtn">Enviar para aprovação</button>
                 <button class="btn secondary" type="button" id="previewBtn">Pré-visualizar</button>
                 <a class="btn secondary" href="../index.html">Voltar</a>
-            </div>
-
-            <p class="muted" style="margin-top:8px">
-                *Ao enviar, você declara ter direitos de uso do material e concorda em exibi-lo no Iara Games caso
-                aprovado.
-            </p>
-            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+            </footer>
 
             <output id="feedback" class="form-feedback" aria-live="polite"></output>
         </form>
+
 
         <!-- Prévia do card -->
         <section id="preview" class="card" hidden>

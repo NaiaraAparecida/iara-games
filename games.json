@@ -9,8 +9,8 @@
     "img": "./assets/images/Lenda-do-heroi.png",
     "link": "https://alendadoheroi.com.br",
     "descricao": "",
-    "trailer": "",
-    "screenshots": [],
+    "trailer": "https://www.youtube.com/watch?v=GWa_A5pO-Js&t=10s",
+    "screenshots": ["./assets/images/ScreenLendaHeroí.jpg","./assets/images/ScreenLendaHeroí2.jpg", "./assets/images/ScreenLendaHeroí3.jpg"],
     "featured": true
   },
   {
@@ -23,8 +23,8 @@
     "img": "./assets/images/Fobia.jpg",
     "link": "https://www.fobiaojogo.com",
     "descricao": "",
-    "trailer": "",
-    "screenshots": [],
+    "trailer": "https://www.youtube.com/watch?v=kNFAtoS5yz8",
+    "screenshots": ["./assets/images/fobia1.png", "./assets/images/fobia2.png", "./assets/images/fobia3.png "],
     "featured": true
   },
   {
@@ -37,9 +37,9 @@
     "img": "./assets/images/Hazel.jpg",
     "link": "https://store.steampowered.com/app/963040/Hazel_Sky/",
     "descricao": "",
-    "trailer": "",
-    "screenshots": [],
-    "featured": false
+    "trailer": "https://www.youtube.com/watch?v=X-rQqGc8MkY",
+    "screenshots": ["./assets/images/hazel1.png", "./assets/images/hazel2.png", "./assets/images/hazel3.png"],
+    "featured": true
   },
   {
     "slug": "horizon-chase-turbo",
@@ -51,8 +51,8 @@
     "img": "./assets/images/Horizon.jpg",
     "link": "https://www.horizonchaseturbo.com/pt-br",
     "descricao": "Corrida arcade inspirado nos clássicos 16-bit.",
-    "trailer": "https://www.youtube.com/watch?v=VXcVfwtY0-E",
-    "screenshots": ["assets/images/hct1.png", "assets/images/hct2.png"],
+    "trailer": "https://www.youtube.com/watch?v=SNL3RhmXPh4",
+    "screenshots": ["./assets/images/horizon1.png", "./assets/images/horizon2.png", "./assets/images/horizon3.png"],
     "featured": true
   },
   {
@@ -65,8 +65,8 @@
     "img": "./assets/images/Blazing.jpg",
     "link": "https://joymasher.com/blazing-chrome/",
     "descricao": "Run-and-gun explosivo em pixel art.",
-    "trailer": "https://www.youtube.com/watch?v=yx3XhZ1ikUo",
-    "screenshots": ["assets/images/bc1.png", "assets/images/bc2.png"],
+    "trailer": "https://www.youtube.com/watch?v=WzR7ldgPDro",
+    "screenshots": ["./assets/images/blazing1.png", "./assets/images/blazing2.png", "./assets/images/blazing3.png"],
     "featured": true
   },
   {
@@ -79,8 +79,8 @@
     "img": "./assets/images/Dolmen.jpg",
     "link": "https://store.steampowered.com/app/831050/DOLMEN/",
     "descricao": "",
-    "trailer": "",
-    "screenshots": [],
+    "trailer": "https://www.youtube.com/watch?v=vGfTiyT3MBE",
+    "screenshots": ["./assets/images/dolmen1.png", "./assets/images/dolmen2.png", "./assets/images/dolmen3.png"],
     "featured": false
   },
   {
@@ -93,8 +93,8 @@
     "img": "./assets/images/99Vidas.jpg",
     "link": "https://store.steampowered.com/app/557040/99Vidas/",
     "descricao": "",
-    "trailer": "",
-    "screenshots": [],
+    "trailer": "https://www.youtube.com/watch?v=18NpuAFSahQ",
+    "screenshots": ["./assets/images/99vidas1.png", "./assets/images/99vidas2.png","./assets/images/99vidas3.png"],
     "featured": false
   },
   {
@@ -107,7 +107,7 @@
     "img": "./assets/images/Dandy.jpg",
     "link": "https://www.madmimic.com/dac",
     "descricao": "",
-    "trailer": "",
+    "trailer": "https://www.youtube.com/watch?v=tD8SpPUKM9M",
     "screenshots": [],
     "featured": false
   },
@@ -163,7 +163,7 @@
   "img": "./assets/images/Celeste.png",
   "link": "https://store.steampowered.com/app/504230/Celeste/",
   "descricao": "Um desafiador jogo de plataforma sobre superar limites e enfrentar batalhas internas enquanto escala a montanha Celeste.",
-  "trailer": "https://www.youtube.com/watch?v=iofYDsJ8xHk",
+  "trailer": "https://www.youtube.com/watch?v=70d9irlxiB4",
   "screenshots": ["./assets/images/celeste1.png", "./assets/images/celeste2.png"],
   "featured": true
 },

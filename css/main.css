@@ -74,6 +74,13 @@ html[data-theme="dark"] {
     color: var(--fg);
 }
 
+:root[data-theme="light"] .tag {
+    background: #E9F7EF;
+    color: #0E7C3A;
+    border-color: #9FD8BE;
+}
+
+
 /* ============ 01) Base & Utilitários ============ */
 * {
     box-sizing: border-box;
@@ -603,46 +610,142 @@ textarea:focus {
 }
 
 /* ============ 10) Form público (Enviar jogo) ============ */
-.form-card {
-    padding: 16px;
+/* ===== Form moderno (Iara) - versão neutra ===== */
+.form-modern {
+    --ring: 0 0 0 3px rgba(30, 136, 229, .15);
+    --stroke: var(--border);
+    --soft: 12px;
+
+    padding: 22px;
+    border: 1px solid var(--stroke);
+    border-radius: 16px;
+    background: var(--card);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .18);
 }
 
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
+.form-modern .form-head {
+    margin-bottom: 12px;
 }
 
-.field {
-    display: grid;
+.form-modern .form-head h2 {
+    margin: 6px 0 4px;
+    font-size: 2rem;
+}
+
+.form-modern .form-head .form-badge {
+    display: inline-flex;
+    align-items: center;
     gap: 6px;
+    background: rgba(17, 168, 109, .15);
+    color: var(--brand);
+    border: 1px solid rgba(17, 168, 109, .3);
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 1.2rem;
+    letter-spacing: .2px;
 }
 
-.field.wide {
+.form-modern .req {
+    color: var(--br-yellow);
+    font-weight: 700;
+}
+
+.form-modern .form-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 1fr;
+}
+
+.form-modern .field {
+    display: grid;
+    gap: 8px;
+}
+
+.form-modern .field.wide {
     grid-column: 1 / -1;
 }
 
-.field label {
+.form-modern label {
     font-weight: 600;
+    letter-spacing: .2px;
 }
 
-.field .hint {
+.form-modern .hint {
     color: var(--muted);
-    font-size: .9rem;
+    font-size: 1.3rem;
 }
 
-.form-actions {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-top: 6px;
-}
-
-.form-feedback {
-    display: block;
-    margin-top: 10px;
+.form-modern input[type="text"],
+.form-modern input[type="email"],
+.form-modern input[type="number"],
+.form-modern textarea {
+    background: var(--card-2);
     color: var(--fg);
+    border: 1px solid var(--stroke);
+    border-radius: var(--soft);
+    padding: 12px 14px;
+    transition: box-shadow .15s, border-color .15s, background .15s;
 }
+
+.form-modern input::placeholder,
+.form-modern textarea::placeholder {
+    color: #8fa2c6;
+}
+
+.form-modern input:focus,
+.form-modern textarea:focus {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: var(--ring);
+    background: var(--card);
+}
+
+/* Campo com prefixo (R$) */
+.form-modern .with-prefix {
+    position: relative;
+}
+
+.form-modern .with-prefix .prefix {
+    position: absolute;
+    left: 12px;
+    top: 34px;
+    font-weight: 700;
+    color: var(--muted);
+}
+
+.form-modern .with-prefix input {
+    padding-left: 42px;
+}
+
+/* Honeypot escondido */
+.form-modern .hp {
+    display: none !important;
+}
+
+/* Ações do form */
+.form-modern .form-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.preview-card {
+    margin-top: 16px;
+}
+
+/* Tema claro refinado */
+:root[data-theme="light"] .form-modern {
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(15, 30, 65, .1);
+}
+
+:root[data-theme="light"] .form-modern input,
+:root[data-theme="light"] .form-modern textarea {
+    background: #fff;
+    border: 1px solid #d9e2ef;
+}
+
 
 /* inputs combinando com tema */
 input[type="text"],
@@ -742,4 +845,264 @@ textarea:focus {
     .form-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+}
+
+/* ==== Media ==== */
+@media (min-width: 720px) {
+    .form-modern .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ====== MOBILE FIRST / RESPONSIVO ====== */
+
+/* Tipografia e espaçamentos gerais para telas menores */
+@media (max-width: 960px) {
+    .app-main {
+        padding: 18px 0;
+    }
+
+    h1 {
+        font-size: clamp(2.2rem, 2.6vw + 1.6rem, 3.0rem);
+    }
+
+    .hero {
+        padding: 28px 0 8px;
+    }
+
+    .hero p {
+        max-width: 60ch;
+    }
+}
+
+/* Navbar compacta + esconder menu desktop */
+@media (max-width: 780px) {
+    .nav .inner {
+        padding: 10px 0;
+    }
+
+    .brand img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .brand span {
+        font-size: 1.6rem;
+        line-height: 1.1;
+    }
+
+    .desktop-nav {
+        display: none;
+    }
+
+    .hamburger {
+        display: inline-flex;
+    }
+
+    /* Sidebar mobile */
+    /* ===== Sidebar Mobile — Iara ===== */
+    .sidebar {
+        position: fixed;
+        inset: 0 30% 0 0;
+        /* ocupa 70% da largura */
+        max-width: 320px;
+        background: var(--card);
+        border-right: 1px solid var(--border);
+        transform: translateX(-100%);
+        transition: transform .22s ease;
+        z-index: 50;
+        display: flex;
+        flex-direction: column;
+        padding: calc(env(safe-area-inset-top, 0) + 10px) 14px calc(env(safe-area-inset-bottom, 0) + 18px);
+        gap: 10px;
+    }
+
+    .nav-open .sidebar {
+        transform: translateX(0);
+    }
+
+    .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, .45);
+        opacity: 0;
+        pointer-events: none;
+        transition: .2s;
+        z-index: 40;
+    }
+
+    .nav-open .overlay {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    body.nav-open {
+        overflow: hidden;
+    }
+
+    /* trava scroll do fundo */
+
+    .side-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 6px 2px 10px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .side-logo {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+    }
+
+    .side-close {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: var(--card-2);
+        color: var(--fg);
+        cursor: pointer;
+    }
+
+    .side-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding-top: 6px;
+    }
+
+    .side-nav .link {
+        display: flex;
+        align-items: center;
+        min-height: 44px;
+        /* alvo de toque */
+        padding: 10px 10px;
+        border-radius: 10px;
+        font-weight: 600;
+    }
+
+    .side-nav .link:active {
+        background: rgba(0, 0, 0, .08);
+    }
+
+    :root[data-theme="light"] .side-nav .link:active {
+        background: rgba(0, 0, 0, .06);
+    }
+
+    /* Link ativo (página atual) */
+    .side-nav .link[aria-current="page"] {
+        background: rgba(247, 209, 23, .18);
+        border: 1px solid rgba(247, 209, 23, .45);
+    }
+
+    /* Separador e botão de tema */
+    .side-sep {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 8px 0 6px;
+    }
+
+    .side-toggle {
+        width: 100%;
+        min-height: 44px;
+        text-align: left;
+        background: var(--card-2);
+        border: 1px solid var(--border);
+        color: var(--fg);
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    /* Pequenos ajustes de tipografia no mobile */
+    @media (max-width: 420px) {
+        .side-nav .link {
+            font-size: 1.5rem;
+        }
+
+        .side-toggle {
+            font-size: 1.5rem;
+        }
+    }
+
+    /* Tema claro: reforçar contraste */
+    :root[data-theme="light"] .sidebar {
+        box-shadow: 8px 0 28px rgba(15, 30, 65, .10);
+    }
+
+    :root[data-theme="light"] .side-close {
+        background: #fff;
+    }
+
+
+    /* Filtros/controles: empilhar e ocupar largura toda no mobile */
+    @media (max-width: 780px) {
+        .controls {
+            gap: 10px;
+        }
+
+        .controls .input,
+        .controls .select,
+        .controls .btn {
+            width: 100%;
+        }
+
+        .checkbox-inline {
+            width: 100%;
+            justify-content: flex-start;
+        }
+    }
+
+    /* Grid de cards: 1 por linha no celular, 2 no tablet */
+    @media (max-width: 640px) {
+        .grid {
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+
+        .card img {
+            aspect-ratio: 16 / 9;
+        }
+
+        .btn {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    @media (min-width: 641px) and (max-width: 960px) {
+        .grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* Form (Enviar jogo): 1 coluna no celular */
+    @media (max-width: 720px) {
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .form-actions .btn {
+            width: 100%;
+        }
+    }
+
+    /* Ajustes finos para telas muito estreitas (ex.: 360px) */
+    @media (max-width: 400px) {
+        .brand span {
+            display: none;
+        }
+
+        /* deixa só o ícone se faltar espaço */
+        .tag {
+            font-size: 1.1rem;
+            padding: 5px 10px;
+        }
+
+        .badge {
+            font-size: 1.1rem;
+        }
+    }
+
 }

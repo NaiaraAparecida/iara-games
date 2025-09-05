@@ -1,12 +1,22 @@
-// js/page-novidades.js
 import { loadGames } from './loader.js';
 import { card } from './ui.js';
+import { favorites } from './favorites.js';
 
 function ytEmbed(urlOrId){
   const m = String(urlOrId).match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/);
   const id = m ? m[1] : urlOrId;
-  return `<iframe width="560" height="315" src="https://www.youtube.com/embed/${id}"
-    title="YouTube player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+  return `<iframe width="560" height="315" src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe>`;
+}
+
+function bindFavClicks(root) {
+  root.querySelectorAll('.fav-ico').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault(); e.stopPropagation();
+      favorites.toggle(btn.dataset.slug);
+      btn.classList.add('animated');
+      setTimeout(() => btn.classList.remove('animated'), 250);
+    });
+  });
 }
 
 async function bootstrap(){
@@ -16,22 +26,22 @@ async function bootstrap(){
   const destaque = novidades.find(g => g.trailer) || novidades[0];
   const destEl = document.getElementById('destaque');
   if(destEl && destaque){
-    const IN_PAGES = location.pathname.includes('/pages/');
-    const IMG_PREFIX = IN_PAGES ? '../' : '';
+    const prefix = location.pathname.includes('/pages/') ? '../' : '';
     destEl.innerHTML = `
       <article class="card">
-        <img src="${IMG_PREFIX}${destaque.img}" alt="Capa de ${destaque.nome}">
+        <img src="${prefix}${destaque.img}" alt="Capa de ${destaque.nome}">
         <div class="body">
           <h2>${destaque.nome}</h2>
-          <p class="muted">${destaque.studio} • ${destaque.ano} • ${(destaque.genero||[]).join(', ')}</p>
+          <p class="muted">${destaque.studio} • ${destaque.ano}</p>
           ${destaque.descricao ? `<p>${destaque.descricao}</p>` : ''}
-          ${destaque.trailer ? `<div class="media" style="margin-top:12px">${ytEmbed(destaque.trailer)}</div>` : ''}
+          ${destaque.trailer ? ytEmbed(destaque.trailer) : ''}
         </div>
       </article>`;
   }
 
   const grid = document.getElementById('grid');
   const outras = novidades.filter(g => g !== destaque).slice(0, 12);
-  grid.innerHTML = outras.length ? outras.map(card).join('') : '<p>Nada por aqui ainda.</p>';
+  grid.innerHTML = outras.length ? outras.map(card).join('') : '<p>Nada ainda.</p>';
+  bindFavClicks(grid);
 }
 bootstrap();
