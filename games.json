@@ -10,7 +10,6 @@
     "link": "https://alendadoheroi.com.br",
     "descricao": "",
     "trailer": "https://www.youtube.com/watch?v=GWa_A5pO-Js&t=10s",
-    "screenshots": ["./assets/images/ScreenLendaHeroí.jpg","./assets/images/ScreenLendaHeroí2.jpg", "./assets/images/ScreenLendaHeroí3.jpg"],
     "featured": true
   },
   {
@@ -24,7 +23,6 @@
     "link": "https://www.fobiaojogo.com",
     "descricao": "",
     "trailer": "https://www.youtube.com/watch?v=kNFAtoS5yz8",
-    "screenshots": ["./assets/images/fobia1.png", "./assets/images/fobia2.png", "./assets/images/fobia3.png "],
     "featured": true
   },
   {
@@ -38,7 +36,6 @@
     "link": "https://store.steampowered.com/app/963040/Hazel_Sky/",
     "descricao": "",
     "trailer": "https://www.youtube.com/watch?v=X-rQqGc8MkY",
-    "screenshots": ["./assets/images/hazel1.png", "./assets/images/hazel2.png", "./assets/images/hazel3.png"],
     "featured": true
   },
   {
@@ -52,7 +49,6 @@
     "link": "https://www.horizonchaseturbo.com/pt-br",
     "descricao": "Corrida arcade inspirado nos clássicos 16-bit.",
     "trailer": "https://www.youtube.com/watch?v=SNL3RhmXPh4",
-    "screenshots": ["./assets/images/horizon1.png", "./assets/images/horizon2.png", "./assets/images/horizon3.png"],
     "featured": true
   },
   {
@@ -66,7 +62,6 @@
     "link": "https://joymasher.com/blazing-chrome/",
     "descricao": "Run-and-gun explosivo em pixel art.",
     "trailer": "https://www.youtube.com/watch?v=WzR7ldgPDro",
-    "screenshots": ["./assets/images/blazing1.png", "./assets/images/blazing2.png", "./assets/images/blazing3.png"],
     "featured": true
   },
   {
@@ -80,7 +75,6 @@
     "link": "https://store.steampowered.com/app/831050/DOLMEN/",
     "descricao": "",
     "trailer": "https://www.youtube.com/watch?v=vGfTiyT3MBE",
-    "screenshots": ["./assets/images/dolmen1.png", "./assets/images/dolmen2.png", "./assets/images/dolmen3.png"],
     "featured": false
   },
   {
@@ -90,11 +84,10 @@
     "genero": ["Beat'em up", "Retrô"],
     "studio": "QUByte Interactive",
     "ano": 2016,
-    "img": "./assets/images/99Vidas.jpg",
+    "img": "./assets/images/99Vidas.png",
     "link": "https://store.steampowered.com/app/557040/99Vidas/",
     "descricao": "",
     "trailer": "https://www.youtube.com/watch?v=18NpuAFSahQ",
-    "screenshots": ["./assets/images/99vidas1.png", "./assets/images/99vidas2.png","./assets/images/99vidas3.png"],
     "featured": false
   },
   {
@@ -108,7 +101,6 @@
     "link": "https://www.madmimic.com/dac",
     "descricao": "",
     "trailer": "https://www.youtube.com/watch?v=tD8SpPUKM9M",
-    "screenshots": [],
     "featured": false
   },
   {
@@ -121,8 +113,7 @@
     "img": "./assets/images/Unsighted.jpg",
     "link": "https://store.steampowered.com/app/1062110/UNSIGHTED/",
     "descricao": "",
-    "trailer": "",
-    "screenshots": [],
+    "trailer": "https://www.youtube.com/watch?v=b3_y7qqfWTI",
     "featured": false
   },
   {
@@ -135,8 +126,7 @@
     "img": "./assets/images/Dandara.png",
     "link": "https://store.steampowered.com/app/612390/Dandara/",
     "descricao": "",
-    "trailer": "",
-    "screenshots": [],
+    "trailer": "https://www.youtube.com/watch?v=0CCYZgpCa8s",
     "featured": false
   },
   {
@@ -149,8 +139,7 @@
     "img": "./assets/images/Chroma.jpg",
     "link": "https://store.steampowered.com/app/251130/Chroma_Squad/",
     "descricao": "Um RPG tático sobre cinco dublês que decidem criar seu próprio estúdio de TV inspirado em Tokusatsu.",
-    "trailer": "https://www.youtube.com/watch?v=FbtfOKZ1vlg",
-    "screenshots": [],
+    "trailer": "https://www.youtube.com/watch?v=Hn9rSzenqsk",
     "featured": false
   },
   {
@@ -164,7 +153,6 @@
   "link": "https://store.steampowered.com/app/504230/Celeste/",
   "descricao": "Um desafiador jogo de plataforma sobre superar limites e enfrentar batalhas internas enquanto escala a montanha Celeste.",
   "trailer": "https://www.youtube.com/watch?v=70d9irlxiB4",
-  "screenshots": ["./assets/images/celeste1.png", "./assets/images/celeste2.png"],
   "featured": true
 },
 {
@@ -177,8 +165,7 @@
   "img": "./assets/images/Toren.jpg",
   "link": "https://store.steampowered.com/app/320820/Toren/",
   "descricao": "Uma jornada poética em que você guia a Criança da Lua na escalada de uma misteriosa torre, enfrentando desafios e descobrindo segredos.",
-  "trailer": "https://www.youtube.com/watch?v=3Zy3qbxTmXI",
-  "screenshots": ["./assets/images/toren1.png", "./assets/images/toren2.png"],
+  "trailer": "https://www.youtube.com/watch?v=5Jy3D-Dq2Y8",
   "featured": false
 },
 {
@@ -191,8 +178,7 @@
   "img": "./assets/images/NoHeroesHere.jpg",
   "link": "https://store.steampowered.com/app/617390/No_Heroes_Here/",
   "descricao": "Um frenético jogo cooperativo onde você e seus amigos precisam defender o castelo produzindo munição e derrotando ondas de inimigos.",
-  "trailer": "https://www.youtube.com/watch?v=ppKqzQ0Xz4Y",
-  "screenshots": ["./assets/images/noheroes1.png", "./assets/images/noheroes2.png"],
+  "trailer": "https://www.youtube.com/watch?v=NX_4_LFxCBA",
   "featured": false
 },
 {
@@ -205,8 +191,7 @@
   "img": "./assets/images/RedRonin.jpg",
   "link": "https://store.steampowered.com/app/1144350/Red_Ronin/",
   "descricao": "Um puzzle tático onde você controla uma ninja em busca de vingança, planejando cada movimento para eliminar inimigos em um único golpe.",
-  "trailer": "https://www.youtube.com/watch?v=Z5UAgSYWk3Q",
-  "screenshots": ["./assets/images/redronin1.png", "./assets/images/redronin2.png"],
+  "trailer": "https://www.youtube.com/watch?v=8QJt08TxNaE",
   "featured": false
 },
 {
@@ -219,8 +204,7 @@
   "img": "./assets/images/Arida.jpg",
   "link": "https://store.steampowered.com/app/1000020/ARIDA_Backlands_Awakening/",
   "descricao": "Ambientado no sertão nordestino, Árida conta a história de Cícera em busca de sobrevivência em tempos de seca.",
-  "trailer": "https://www.youtube.com/watch?v=UGe3CGqZvVc",
-  "screenshots": ["./assets/images/arida1.png", "./assets/images/arida2.png"],
+  "trailer": "https://www.youtube.com/watch?v=M_9eHBGBJA0",
   "featured": false
 }
 ]

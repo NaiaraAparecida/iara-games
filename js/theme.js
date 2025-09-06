@@ -1,13 +1,13 @@
 const STORAGE_KEY = 'iara-theme';
 const root = document.documentElement;
 
-// escolhe tema inicial: salvo -> preferência do SO -> 'dark'
+// Detecta preferência salva ou do SO
 const saved = localStorage.getItem(STORAGE_KEY);
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 const initial = saved || (prefersDark ? 'dark' : 'light');
 applyTheme(initial);
 
-// click em qualquer [data-theme-toggle] alterna o tema
+// Alterna ao clicar em qualquer botão com [data-theme-toggle]
 document.addEventListener('click', (e) => {
   const btn = e.target.closest('[data-theme-toggle]');
   if (!btn) return;
@@ -19,9 +19,11 @@ document.addEventListener('click', (e) => {
 function applyTheme(mode) {
   root.setAttribute('data-theme', mode);
   localStorage.setItem(STORAGE_KEY, mode);
-  // feedback visual nos toggles
+
+  // Feedback visual em todos os toggles
   document.querySelectorAll('[data-theme-toggle]').forEach((el) => {
     el.setAttribute('aria-pressed', String(mode === 'dark'));
     el.title = mode === 'dark' ? 'Tema: escuro' : 'Tema: claro';
   });
 }
+
