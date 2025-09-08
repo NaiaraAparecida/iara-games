@@ -3,55 +3,51 @@
 **Iara Games** é uma plataforma independente dedicada a divulgar e valorizar **jogos brasileiros**.  
 O projeto funciona como uma vitrine digital, com catálogo pesquisável, favoritos persistentes e detalhes ricos de cada título.
 
-🌐 Deploys:  
-- [GitHub Pages](https://naiaraaparecida.github.io/iara-games/)  
-- [Netlify](https://iara-games.netlify.app/)  
+## ☁️ Deploy
+- **Site:** https://iara-games.netlify.app/
+- **GitHub Pages:** https://naiaraaparecida.github.io/iara-games/
 
 ---
 
-## ✨ Funcionalidades
-
-- 📚 **Catálogo de jogos** com busca, filtros por gênero/faixa de preço e ordenação.
-- ❤️ **Favoritos persistentes** com LocalStorage.
-- 🔥 **Ranking de popularidade** (ordenado pelos mais favoritados).
-- 🎬 **Página de detalhes** com descrição, trailer do YouTube e link de compra/site oficial.
-- 🌙 **Tema claro/escuro** com preferência salva.
-- 📱 **Layout responsivo** com sidebar de navegação no mobile.
-- 📝 **Formulário público** para envio de novos jogos (com aprovação manual).
-- 🕹️ **404 personalizado** no estilo gamer.
-
+## ✨ Recursos
+- Catálogo com **cards** de jogos (capa, tags, descrição)
+- **Busca** por nome e **filtros** por gênero/plataforma (JS)
+- Organização por **JSON** (mock de dados)
+- Layout **responsivo** e acessível
+- Estrutura pronta para evoluir (favoritos, painel simples/CRUD)
+  
 ---
 
-## 🛠️ Tecnologias
-
-- **HTML5, CSS3, JavaScript (ES6+)**
-- **Vanilla JS** para rotas, estados e favoritos
-- **LocalStorage** para persistência no navegador
-- **Netlify / GitHub Pages** para deploy
-- **Formspree** para envio de formulários
+## 🛠 Tecnologias
+- **HTML5**, **CSS3**, **JavaScript**
+- Dados em **JSON** local (mock)
 
 ---
 
 ## 📂 Estrutura do projeto
-```plaintext
-/
-├── index.html
-├── novidades.html
-├── favoritos.html
-├── sobre.html
-├── enviar-jogo.html
-├── 404.html
-├── assets/
-├── css/main.css
-├── js/
-│   ├── loader.js
-│   ├── ui.js
-│   ├── favorites.js
-│   ├── theme.js
-│   ├── nav.js
-│   ├── page-*.js
-└── games.json
 
+iara-games/
+├── index.html
+└── assets/
+├── css/ └── style.css
+├── js/ ├── main.js
+│ └── data.json # lista de jogos (mock)
+├── img/ └── (capas, ícones)
+└── docs/ └── (screenshots, notas)
+
+---
+
+## 🤝 Contribuindo
+
+Issues e PRs são bem-vindos!
+
+---
+
+## 📬 Contato
+
+LinkedIn: https://www.linkedin.com/in/naiara-cruz
+
+Email: naiaraaparecida95@gmail.com
 
 ---
 
